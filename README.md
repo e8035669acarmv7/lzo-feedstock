@@ -9,6 +9,8 @@ Feedstock license: BSD 3-Clause
 
 Summary: LZO is a portable lossless data compression library written in ANSI C.
 
+LZO offers pretty fast compression and extremely fast decompression.
+MiniLZO is a very lightweight subset of the LZO library.
 
 
 Current build status
