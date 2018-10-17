@@ -14,7 +14,7 @@ source:
   {{ hash_type }}: {{ hash_val }}
 
 build:
-  number: 0
+  number: 1000
   skip: True  # [win and py35]
   features:
     - vc9   # [win and py27]
