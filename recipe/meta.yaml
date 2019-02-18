@@ -20,6 +20,7 @@ requirements:
     - cmake 3.*
     - {{ compiler('c') }}
     - cmake
+    - make
 
 test:
   commands:
