@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-if [[ `uname` == "Darwin" ]]; then
+if [[ "$target_platform" == "osx-64" ]]; then
   CMAKE_ARGS="${CMAKE_ARGS} -DCMAKE_MACOSX_RPATH=ON"
 fi
 
