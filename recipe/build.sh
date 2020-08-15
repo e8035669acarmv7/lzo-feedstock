@@ -19,7 +19,7 @@ cmake -DCMAKE_BUILD_TYPE=Release \
 
 make -j${CPU_COUNT} ${VERBOSE_CM}
 
-if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
   # This is the same as `make test` when not using cmake.
   ./lzotest -mlzo -n2 -q ${SRC_DIR}/COPYING
 fi
