@@ -1,9 +1,8 @@
 #!/bin/bash
 set -ex
 
-EXTRA_CMAKE_ARGS=""
-if [[ `uname` == "Darwin" ]]; then
-  EXTRA_CMAKE_ARGS="${EXTRA_CMAKE_ARGS} -DCMAKE_MACOSX_RPATH=ON"
+if [[ "$target_platform" == "osx-64" ]]; then
+  CMAKE_ARGS="${CMAKE_ARGS} -DCMAKE_MACOSX_RPATH=ON"
 fi
 
 mkdir -p cmake-build
@@ -14,14 +13,15 @@ cmake -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_INSTALL_PREFIX=${PREFIX} \
       -DCMAKE_INSTALL_LIBDIR=${PREFIX}/lib \
       -DCMAKE_INSTALL_RPATH=${PREFIX}/lib \
-      -DCMAKE_EXE_LINKER_FLAGS="-Wl,-rpath,${PREFIX}/lib -L${PREFIX}/lib" \
       -DENABLE_SHARED=ON \
       -DENABLE_STATIC=ON \
-      ${EXTRA_CMAKE_ARGS} ${SRC_DIR}
+      ${CMAKE_ARGS} ${SRC_DIR}
 
 make -j${CPU_COUNT} ${VERBOSE_CM}
 
-# This is the same as `make test` when not using cmake.
-./lzotest -mlzo -n2 -q ${SRC_DIR}/COPYING
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
+  # This is the same as `make test` when not using cmake.
+  ./lzotest -mlzo -n2 -q ${SRC_DIR}/COPYING
+fi
 
 make -j${CPU_COUNT} install
