@@ -3,7 +3,7 @@ About lzo
 
 Home: http://www.oberhumer.com/opensource/lzo/
 
-Package license: GPL v2+
+Package license: GPL-2.0-or-later
 
 Feedstock license: BSD-3-Clause
 
